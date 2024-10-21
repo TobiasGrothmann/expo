@@ -1,46 +1,62 @@
 {
-  "name": "@expo/expo",
-  "version": "1.4.0",
-  "private": true,
-  "author": "Expo",
-  "license": "MIT",
+  "name": "expo-sqlite",
+  "version": "14.0.3",
+  "description": "Provides access to a database using SQLite (https://www.sqlite.org/). The database is persisted across restarts of your app.",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "default": "./build/index.js",
+      "types": "./build/index.d.ts"
+    },
+    "./async-storage": {
+      "default": "./async-storage.js",
+      "types": "./async-storage.d.ts"
+    }
+  },
   "scripts": {
-    "setup:docs": "./scripts/download-dependencies.sh",
-    "setup:native": "./scripts/download-dependencies.sh && ./scripts/setup-react-android.sh",
-    "postinstall": "yarn-deduplicate && yarn workspace @expo/cli prepare && patch-package && node ./tools/bin/expotools.js validate-workspace-dependencies",
-    "lint": "eslint .",
-    "tsc": "echo 'You are trying to run \"tsc\" in the workspace root. Run it from an individual package instead.' && exit 1"
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
   },
-  "workspaces": {
-    "packages": [
-      "apps/*",
-      "packages/*",
-      "packages/@expo/*"
-    ]
+  "keywords": [
+    "react-native",
+    "expo",
+    "sqlite",
+    "sql"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/expo/expo.git",
+    "directory": "packages/expo-sqlite"
   },
-  "resolutions": {
-    "react-native": "0.76.0-rc.6",
-    "react": "18.3.1",
-    "@react-navigation/bottom-tabs": "7.0.0-rc.33",
-    "@react-navigation/core": "7.0.0-rc.15",
-    "@react-navigation/drawer": "7.0.0-rc.31",
-    "@react-navigation/elements": "2.0.0-rc.25",
-    "@react-navigation/native": "7.0.0-rc.20",
-    "@react-navigation/native-stack": "7.0.0-rc.28",
-    "@react-navigation/routers": "7.0.0-rc.8",
-    "@react-navigation/stack": "7.0.0-rc.27",
-    "react-native-screens": "4.0.0-beta.12",
-    "**/util": "~0.12.4"
+  "bugs": {
+    "url": "https://github.com/expo/expo/issues"
+  },
+  "author": "650 Industries, Inc.",
+  "license": "MIT",
+  "homepage": "https://docs.expo.dev/versions/latest/sdk/sqlite/",
+  "jest": {
+    "preset": "expo-module-scripts"
   },
   "dependencies": {
-    "eslint": "^8.57.1",
-    "jsc-android": "^250231.0.0",
-    "node-gyp": "^10.0.1",
-    "patch-package": "^8.0.0",
-    "prettier": "^3.3.3",
-    "yarn-deduplicate": "^6.0.2"
   },
-  "volta": {
-    "node": "20.12.2"
+  "devDependencies": {
+    "@testing-library/react-native": "^12.5.2",
+    "@types/better-sqlite3": "^7.6.6",
+    "better-sqlite3": "^11.0.0",
+    "expo-module-scripts": "^3.0.0",
+    "react-error-boundary": "^4.0.11"
+  },
+  "peerDependencies": {
+    "expo": "*",
+    "react": "*",
+    "react-native": "*"
   }
 }
